@@ -97,3 +97,58 @@ override func willMove(toWindow newWindow: UIWindow?)
 override func didMoveToWindow()
 
 ```
+
+## Phụ lục B - Nội dung bài thực hành
+
+1. Tạo UIView bằng code
+
+   - Khởi tạo bằng UIView(frame:).
+   - Đặt backgroundColor.
+   - Thêm vào root view bằng addSubview.
+   - Quan sát sự khác nhau giữa frame của view và hệ tọa độ của superview.
+
+2. Subview và superview
+
+   - Một container đóng vai trò superview.
+   - Ba view màu đỏ, xanh, vàng chồng lên nhau.
+   - Một view vượt ra ngoài bounds của container.
+   - Quan sát superview, subviews và thứ tự back-to-front.
+
+3. Tương tác trực tiếp với hierarchy
+
+   Màn hình sẽ có các nút điều khiển:
+
+   - Bật/tắt clipsToBounds.
+   - Thay đổi alpha của superview. (để sau)
+   - Đưa một view lên trước hoặc xuống sau.
+   - Xóa và thêm lại một view.
+   - Resize container để quan sát Auto Layout/autoresizing.
+   - Hiển thị kết quả của isDescendant(of:) và viewWithTag(_:).
+
+4. Quan sát lifecycle
+
+   Tạo một subclass nhỏ của UIView để in log:
+
+   - didAddSubview
+   - willRemoveSubview
+   - willMove(toSuperview:)
+   - didMoveToSuperview
+   - willMove(toWindow:)
+   - didMoveToWindow
+
+## Định hướng giao diện
+
+Màn hình thực hành gồm hai vùng chính:
+
+``` text
+ViewController.rootView
+├── containerView
+│   ├── redView      (tag: 101)
+│   ├── blueView     (tag: 102)
+│   └── greenView    (tag: 103)
+└── configurationView
+```
+
+Ba color view là sibling trực tiếp của `containerView`. Frame của chúng được đặt lệch nhau để tạo vùng overlap, nhờ đó có thể quan sát thay đổi z-order.
+
+Phần bố cục màn hình bên ngoài dùng Auto Layout để chạy tốt trên nhiều kích thước iPhone/iPad. Riêng ba view minh họa sẽ dùng frame có chủ đích để người học nhìn rõ hệ tọa độ, overlap và z-order.
